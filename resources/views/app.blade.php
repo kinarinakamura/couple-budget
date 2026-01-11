@@ -14,6 +14,15 @@
         <meta name="description" content="同棲カップル向けの家計分担計算ツール。年収や生活費から公平な分担方法を30秒で診断。グラフで見やすく、SNSで簡単シェア。">
         <meta name="keywords" content="家計簿,同棲,カップル,分担,生活費,計算,診断">
 
+        <!-- Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0BFT1R1DXS"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        </script>
+
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content="website">
         <meta property="og:url" content="{{ config('app.url') }}">
