@@ -196,6 +196,13 @@ const getBadgeClass = computed(() => {
             <div v-if="result.incomeA && result.incomeB" class="text-center text-sm text-gray-600">
                 年収：Aさん {{ result.incomeA }}万円 / Bさん {{ result.incomeB }}万円
             </div>
+
+            <!-- リンクコピー完了トースト -->
+            <div v-if="showToast" class="toast toast-end toast-bottom">
+                <div class="alert alert-success">
+                <span>リンクをコピーしました！</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -253,6 +260,11 @@ const getBadgeClass = computed(() => {
 
 <script>
 export default {
+    data() {
+        return {
+            showToast: false,
+        };
+    },
     methods: {
         shareResult() {
             document.getElementById('share_modal').showModal();
@@ -284,13 +296,17 @@ export default {
             const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(text)}`;
             window.open(lineUrl, '_blank');
         },
-        
         copyLink() {
             const shareUrl = this.generateShareUrl();
             navigator.clipboard.writeText(shareUrl).then(() => {
-                alert('リンクをコピーしました！');
+            document.getElementById('share_modal').close();
+            this.showToast = true;
+
+            setTimeout(() => {
+                this.showToast = false;
+            }, 2000);
             });
-        }
+        },
     }
 }
 </script>

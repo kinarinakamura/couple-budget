@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* カスタム alert-success（柔らかい緑） */
+.alert-success {
+    --alert-bg: #d1fae5;
+    --alert-border: #a7f3d0;
+    background-color: var(--alert-bg);
+    border-color: var(--alert-border);
+    color: #065f46;
+}
