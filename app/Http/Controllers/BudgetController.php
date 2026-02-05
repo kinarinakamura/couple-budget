@@ -72,6 +72,32 @@ class BudgetController extends Controller
     }
 
     /**
+     * 年収に応じた手取り率を計算（万円単位）
+     */
+    // private function calculateTakeHomeRate(float $annualIncome): float
+    // {
+    //     if ($annualIncome <= 200) {
+    //         return 0.82;  // 低所得 → 控除少ない
+    //     } elseif ($annualIncome <= 300) {
+    //         return 0.80;
+    //     } elseif ($annualIncome <= 400) {
+    //         return 0.78;
+    //     } elseif ($annualIncome <= 500) {
+    //         return 0.77;
+    //     } elseif ($annualIncome <= 600) {
+    //         return 0.76;
+    //     } elseif ($annualIncome <= 800) {
+    //         return 0.75;
+    //     } elseif ($annualIncome <= 1000) {
+    //         return 0.73;
+    //     } elseif ($annualIncome <= 1500) {
+    //         return 0.71;
+    //     } else {
+    //         return 0.68;  // 高所得 → 税率高い
+    //     }
+    // }
+
+    /**
      * 収入比例で計算
      */
     private function calculateByIncome($incomeA, $incomeB, $expenses)
@@ -83,10 +109,13 @@ class BudgetController extends Controller
         $splitA = $expenses * $ratioA;
         $splitB = $expenses * $ratioB;
 
-        // 手取りに対する負担率（概算: 年収の80%を手取りと仮定）
+        // 手取りに対する負担率（年収に応じた手取り率で計算）
+        // $takeHomeA = $incomeA * $this->calculateTakeHomeRate($incomeA);
+        // $takeHomeB = $incomeB * $this->calculateTakeHomeRate($incomeB);
+
         $takeHomeA = $incomeA * 0.8;
         $takeHomeB = $incomeB * 0.8;
-        
+
         $burdenRateA = $takeHomeA > 0 ? ($splitA * 12 / $takeHomeA) * 100 : 0;
         $burdenRateB = $takeHomeB > 0 ? ($splitB * 12 / $takeHomeB) * 100 : 0;
 

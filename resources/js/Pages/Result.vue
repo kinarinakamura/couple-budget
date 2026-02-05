@@ -163,6 +163,12 @@ const getBadgeClass = computed(() => {
                         </div>
                     </div>
 
+                    <!-- 注釈 -->
+                    <!--<div v-if="result.burdenRateA" class="text-xs text-gray-400 mt-2 space-y-1">
+                        <p>※本結果は独身・扶養なし・会社員を想定した概算値です</p>
+                        <p>※実際の手取り額は居住地・年齢・家族構成により異なります</p>
+                    </div>-->
+
                     <div class="divider"></div>
                     
                     <!-- アドバイス -->
